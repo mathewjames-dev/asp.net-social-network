@@ -28,10 +28,9 @@ namespace SocialNetwork
                     Configuration.GetConnectionString("DefaultConnection")));
 
             // Setting the default identity model.
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-                options.User.RequireUniqueEmail = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
