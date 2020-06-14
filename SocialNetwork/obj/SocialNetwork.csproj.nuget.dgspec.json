@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mjames\\Source\\Repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj": {}
+    "C:\\Users\\mjames\\source\\repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mjames\\Source\\Repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj": {
+    "C:\\Users\\mjames\\source\\repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mjames\\Source\\Repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj",
+        "projectUniqueName": "C:\\Users\\mjames\\source\\repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj",
         "projectName": "SocialNetwork",
-        "projectPath": "C:\\Users\\mjames\\Source\\Repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj",
+        "projectPath": "C:\\Users\\mjames\\source\\repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj",
         "packagesPath": "C:\\Users\\mjames\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mjames\\Source\\Repos\\Social Networking Website In ASP.NET\\SocialNetwork\\obj\\",
+        "outputPath": "C:\\Users\\mjames\\source\\repos\\Social Networking Website In ASP.NET\\SocialNetwork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mjames\\AppData\\Roaming\\NuGet\\NuGet.Config",

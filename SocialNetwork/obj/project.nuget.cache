@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uI3HoN8555Uo7/mwNuX8Vug6uARhn3tbz/3VBv+D5ADqDnbgw+EXZ+rSQ4Px5jIxQnPm0rNR5NL65a9d7WAa5Q==",
+  "dgSpecHash": "UDGn48+fu4HLY8jj0DoowBtt16SUXJvgViun56kMwbUkDEw8drWp1ZdC5QxOri5grNwCekHnsLXeeB8bXNpH3Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mjames\\Source\\Repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj",
+  "projectFilePath": "C:\\Users\\mjames\\source\\repos\\Social Networking Website In ASP.NET\\SocialNetwork\\SocialNetwork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mjames\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.4\\microsoft.aspnetcore.cryptography.internal.3.1.4.nupkg.sha512",
     "C:\\Users\\mjames\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.4\\microsoft.aspnetcore.cryptography.keyderivation.3.1.4.nupkg.sha512",

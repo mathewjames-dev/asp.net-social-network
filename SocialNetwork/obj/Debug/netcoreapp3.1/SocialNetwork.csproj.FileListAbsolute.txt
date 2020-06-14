@@ -332,9 +332,6 @@ C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.csprojAssemblyReference.cache
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.AssemblyInfoInputs.cache
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.AssemblyInfo.cs
-C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.csproj.CoreCompileInputs.cache
-C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.RazorAssemblyInfo.cache
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.RazorAssemblyInfo.cs
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.TagHelpers.input.cache
@@ -396,3 +393,6 @@ C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.pdb
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.genruntimeconfig.cache
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Nav\_LoginPartial.cshtml.g.cs
+C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.csproj.CoreCompileInputs.cache
+C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cache

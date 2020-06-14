@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SocialNetwork.Models.Users;
+using SocialNetwork.AdditionalClaims;
 
 namespace SocialNetwork
 {
@@ -32,6 +33,10 @@ namespace SocialNetwork
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
+
+            // Setting up the additional claims class for the identity user.
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>,
+                AdditionalUserClaimsPrincipalFactory>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

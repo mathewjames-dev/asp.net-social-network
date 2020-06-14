@@ -1,6 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace SocialNetwork.Models.Users.Status
 {
@@ -35,7 +40,15 @@ namespace SocialNetwork.Models.Users.Status
             set;
         }
 
-        public ApplicationUser User
+        // Foreign Key for user.
+        public string UserId
+        {
+            get;
+            set;
+        }
+
+        // User relationship
+        public virtual ApplicationUser User
         {
             get;
             set;
