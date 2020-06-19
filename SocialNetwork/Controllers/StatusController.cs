@@ -4,7 +4,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using SocialNetwork.Classes.Hubs;
 using SocialNetwork.Data;
 using SocialNetwork.Models.ViewModels;
 
@@ -20,10 +22,16 @@ namespace SocialNetwork.Controllers
          */
         private readonly ApplicationDbContext _db;
 
-        public StatusController(ILogger<StatusController> logger, ApplicationDbContext db)
+        /*
+         * Set an instance of IHubContext utilizing GlobalHub and set to a variable. 
+         */
+        private readonly IHubContext<GlobalHub> _globalHubContext;
+
+        public StatusController(ILogger<StatusController> logger, ApplicationDbContext db, IHubContext<GlobalHub> globalHubContext)
         {
             _logger = logger;
             _db = db;
+            _globalHubContext = globalHubContext;
         }
 
         [HttpPost]
@@ -40,6 +48,11 @@ namespace SocialNetwork.Controllers
              * Update the database changes
              */
             await _db.SaveChangesAsync();
+
+            /*
+             * Send the user id and post content to the global hub method broadcast message
+             */
+            await _globalHubContext.Clients.All.SendAsync("BroadcastMessage", viewModel.Post.UserId, viewModel.Post.Content);
 
 
             /*

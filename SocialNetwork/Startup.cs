@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SocialNetwork.Models.Users;
 using SocialNetwork.AdditionalClaims;
+using SocialNetwork.Classes.Hubs;
 
 namespace SocialNetwork
 {
@@ -73,6 +74,11 @@ namespace SocialNetwork
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+
+                /*
+                 * Hubs
+                 */
+                endpoints.MapHub<GlobalHub>("/global");
             });
         }
     }
