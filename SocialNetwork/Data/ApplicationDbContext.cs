@@ -21,6 +21,21 @@ namespace SocialNetwork.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany<Post>(c => c.Posts)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany<ApplicationUserFriend>(c => c.UserFriends)
+                .WithOne(a => a.User)
+                .HasForeignKey(a => a.UserId);
+
+            builder.Entity<ApplicationUser>()
+               .HasMany<ApplicationUserFriendRequest>(c => c.UserFriendRequests)
+               .WithOne(a => a.User)
+               .HasForeignKey(a => a.UserId);
         }
     }
 }

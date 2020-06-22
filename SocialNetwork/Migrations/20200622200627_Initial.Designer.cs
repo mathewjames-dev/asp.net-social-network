@@ -10,7 +10,7 @@ using SocialNetwork.Data;
 namespace SocialNetwork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200614203342_Initial")]
+    [Migration("20200622200627_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,6 +223,28 @@ namespace SocialNetwork.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriend", b =>
+                {
+                    b.Property<int>("RelationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FriendId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("RelationId");
+
+                    b.HasIndex("FriendId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFriends");
+                });
+
             modelBuilder.Entity("SocialNetwork.Models.Users.Status.Post", b =>
                 {
                     b.Property<int>("StatusId")
@@ -298,6 +320,17 @@ namespace SocialNetwork.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriend", b =>
+                {
+                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "Friend")
+                        .WithMany()
+                        .HasForeignKey("FriendId");
+
+                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "User")
+                        .WithMany("UserFriends")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SocialNetwork.Models.Users.Status.Post", b =>

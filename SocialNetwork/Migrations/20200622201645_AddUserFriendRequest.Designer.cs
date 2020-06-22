@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialNetwork.Data;
 
 namespace SocialNetwork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200622201645_AddUserFriendRequest")]
+    partial class AddUserFriendRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,31 +245,6 @@ namespace SocialNetwork.Migrations
                     b.ToTable("UserFriends");
                 });
 
-            modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriendRequest", b =>
-                {
-                    b.Property<int>("RelationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Accepted")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FriendId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("RelationId");
-
-                    b.HasIndex("FriendId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserFriendRequests");
-                });
-
             modelBuilder.Entity("SocialNetwork.Models.Users.Status.Post", b =>
                 {
                     b.Property<int>("StatusId")
@@ -353,17 +330,6 @@ namespace SocialNetwork.Migrations
 
                     b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "User")
                         .WithMany("UserFriends")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriendRequest", b =>
-                {
-                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "Friend")
-                        .WithMany()
-                        .HasForeignKey("FriendId");
-
-                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "User")
-                        .WithMany("UserFriendRequests")
                         .HasForeignKey("UserId");
                 });
 

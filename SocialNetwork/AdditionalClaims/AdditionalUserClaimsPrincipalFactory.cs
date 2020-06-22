@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+/*
+ * Utilized to add custom claims to the identity user.
+ */
 namespace SocialNetwork.AdditionalClaims
 {
 	public class AdditionalUserClaimsPrincipalFactory
@@ -22,9 +25,17 @@ namespace SocialNetwork.AdditionalClaims
 			var principal = await base.CreateAsync(user);
 			var identity = (ClaimsIdentity)principal.Identity;
 
-			var claims = new List<Claim>();
+            /*
+			 * This is where we add our custom claims
+			 */
+            var claims = new List<Claim>
+            {
+                new Claim("FirstName", user.FirstName),
+                new Claim("LastName", user.LastName)
+            };
 
-			identity.AddClaims(claims);
+            identity.AddClaims(claims);
+
 			return principal;
 		}
 	}

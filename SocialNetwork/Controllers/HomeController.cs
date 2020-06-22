@@ -20,8 +20,6 @@ namespace SocialNetwork.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         /*
          * We want to setup a _db variable which will be an instance of the DB context.
          */
@@ -32,13 +30,18 @@ namespace SocialNetwork.Controllers
          */
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, UserManager<ApplicationUser> userManager)
+        /*
+         * Constructor method for the hoem controller
+         */
+        public HomeController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
-            _logger = logger;
             _db = db;
             _userManager = userManager;
         }
 
+        /*
+         * GET /
+         */
         public async Task<IActionResult> Index()
         {
             /*
@@ -62,9 +65,10 @@ namespace SocialNetwork.Controllers
              */
             var homeViewModel = new HomeViewModel
             {
-                User = user
+                User = user,
+                FriendSuggestions = _db.Users.Where(m => m.Id != userId).Take(5).ToList()
             };
-            
+          
             return View(homeViewModel);
         }
 

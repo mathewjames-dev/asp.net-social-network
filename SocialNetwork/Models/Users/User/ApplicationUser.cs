@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SocialNetwork.Models.Users.Status;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialNetwork.Models.Users
 {
@@ -27,7 +28,21 @@ namespace SocialNetwork.Models.Users
 
         // Posts Relationship
         [PersonalData]
-        public IList<Post> Posts
+        public virtual ICollection<Post> Posts
+        {
+            get;
+            set;
+        }
+
+        // Friend Requests Relationship
+        public virtual ICollection<ApplicationUserFriendRequest> UserFriendRequests
+        {
+            get;
+            set;
+        }
+
+        // Friends Relationship
+        public virtual ICollection<ApplicationUserFriend> UserFriends
         {
             get;
             set;

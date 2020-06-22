@@ -3,6 +3,7 @@ using SocialNetwork.Models.Users;
 using SocialNetwork.Models.Users.Status;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace SocialNetwork.Models.ViewModels
 {
@@ -18,7 +19,19 @@ namespace SocialNetwork.Models.ViewModels
             set;
         }
 
+        /*
+         * This is just passing the user model to the front end
+         */
         public ApplicationUser User
+        {
+            get;
+            set;
+        }
+
+        /*
+         * We want to get a list of friend suggestions
+         */
+        public IList<ApplicationUser> FriendSuggestions
         {
             get;
             set;
