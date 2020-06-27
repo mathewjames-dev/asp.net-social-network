@@ -16,7 +16,10 @@ namespace SocialNetwork.Migrations
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
-                constraints: table => table.PrimaryKey("PK_AspNetRoles", x => x.Id));
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
@@ -40,7 +43,10 @@ namespace SocialNetwork.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true)
                 },
-                constraints: table => table.PrimaryKey("PK_AspNetUsers", x => x.Id));
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -171,23 +177,37 @@ namespace SocialNetwork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserFriends",
+                name: "UserFriendRequests",
                 columns: table => new
                 {
-                    RelationId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FriendId = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
-                    FriendId = table.Column<string>(nullable: true)
+                    Accepted = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserFriends", x => x.RelationId);
+                    table.PrimaryKey("PK_UserFriendRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserFriends_AspNetUsers_FriendId",
-                        column: x => x.FriendId,
+                        name: "FK_UserFriendRequests_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserFriends",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserFriends", x => x.Id);
                     table.ForeignKey(
                         name: "FK_UserFriends_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -241,9 +261,9 @@ namespace SocialNetwork.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserFriends_FriendId",
-                table: "UserFriends",
-                column: "FriendId");
+                name: "IX_UserFriendRequests_UserId",
+                table: "UserFriendRequests",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserFriends_UserId",
@@ -270,6 +290,9 @@ namespace SocialNetwork.Migrations
 
             migrationBuilder.DropTable(
                 name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "UserFriendRequests");
 
             migrationBuilder.DropTable(
                 name: "UserFriends");

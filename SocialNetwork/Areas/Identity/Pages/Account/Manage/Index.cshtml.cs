@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -33,6 +37,11 @@ namespace SocialNetwork.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Display(Name = "Profile Photo")]
+            public IFormFile ProfilePhoto { get; set; }
+
+            public string UserProfilePhoto { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -55,7 +64,8 @@ namespace SocialNetwork.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber,
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                UserProfilePhoto = user.ProfilePhoto
             };
         }
 
@@ -96,11 +106,22 @@ namespace SocialNetwork.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            /*
+             * User Profile Photo Upload
+             */
+            var profilePhotoFileName = ContentDispositionHeaderValue.Parse(Input.ProfilePhoto.ContentDisposition)
+                .FileName.Trim('"');
+            var profilePhotoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Input.ProfilePhoto.FileName);
+            using (System.IO.Stream stream = new FileStream(profilePhotoPath, FileMode.Create))
+            {
+                await Input.ProfilePhoto.CopyToAsync(stream);
+            }
+
+            user.ProfilePhoto = "/images/" + profilePhotoFileName;
             user.FirstName = Input.FirstName;
             user.LastName = Input.LastName;
 
             await _userManager.UpdateAsync(user);
-
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

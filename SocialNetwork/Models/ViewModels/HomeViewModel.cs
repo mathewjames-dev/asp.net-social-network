@@ -13,8 +13,8 @@ namespace SocialNetwork.Models.ViewModels
          * We want to access the post model when on the home page.
          * First reason we will need to do this is for the status form.
          */
-        public Post Post 
-        { 
+        public Post Post
+        {
             get;
             set;
         }
@@ -23,6 +23,15 @@ namespace SocialNetwork.Models.ViewModels
          * This is just passing the user model to the front end
          */
         public ApplicationUser User
+        {
+            get;
+            set;
+        }
+
+        /*
+         * Passing The ApplicationUserFriend Model
+         */
+        public ApplicationUserFriend UserFriend
         {
             get;
             set;

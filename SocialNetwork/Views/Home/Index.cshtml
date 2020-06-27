@@ -1,5 +1,6 @@
 ﻿@using SocialNetwork.Models.Users.Status
 @using SocialNetwork.Models.Users
+@using SocialNetwork.Classes
 @model SocialNetwork.Models.ViewModels.HomeViewModel
 
 @{
@@ -45,43 +46,58 @@
                 <div class="friend-container">
                     @foreach (ApplicationUser user in Model.FriendSuggestions)
                     {
-                        <div class="friend-container__item">
-                            <img style="width: 100px;" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/balapa.jpg" />
-                            <span>@user.FirstName @user.LastName</span>
+                    <div class="friend-container__item">
+                        <img style="width: 100px;" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/balapa.jpg" />
+                        <span>@user.FirstName @user.LastName</span>
+                        @if (!Model.User.IsFriend(Model.User.Id, user.Id))
+                        {
                             @using (Html.BeginForm("AddFriend", "Friend", FormMethod.Post))
                             {
-                                <input type="hidden" value="@user.Id" name="userId" />
+                                @Html.Hidden("userId", Model.User.Id);
+                                @Html.Hidden("friendId", user.Id);
+
                                 <input type="submit" value="Add Friend" />
                             }
-                        </div>
+                        }
+                        else
+                        {
+                            @using (Html.BeginForm("RemoveFriend", "Friend", FormMethod.Post))
+                            {
+                                @Html.Hidden("userId", Model.User.Id);
+                                @Html.Hidden("friendId", user.Id);
+
+                                <input type="submit" value="Remove Friend" />
+                            }
+                        }
+                    </div>
                     }
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
-    <script src="~/js/signalr.js"></script>
-    <script>
-        "use strict";
+<script src="~/js/signalr.js"></script>
+<script>
+    "use strict";
 
-        var connection = new signalR.HubConnectionBuilder()
-            .withUrl("/global")
-            .configureLogging(signalR.LogLevel.Information)
-            .build();
+    var connection = new signalR.HubConnectionBuilder()
+        .withUrl("/global")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
 
-        connection.start().then(
-            () => console.log("connected")
-        ).catch(
-            err => console.error(err)
-        );
+    connection.start().then(
+        () => console.log("connected")
+    ).catch(
+        err => console.error(err)
+    );
 
-        connection.on("BroadcastMessage", function (user, message) {
-            console.log('received');
-            var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            var encodedMsg = user + " says " + msg;
-            var li = document.createElement("li");
-            li.textContent = encodedMsg;
-            alert(encodedMsg);
-        });
-    </script>
+    connection.on("BroadcastMessage", function (user, message) {
+        console.log('received');
+        var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        var encodedMsg = user + " says " + msg;
+        var li = document.createElement("li");
+        li.textContent = encodedMsg;
+        alert(encodedMsg);
+    });
+</script>

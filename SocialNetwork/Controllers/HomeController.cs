@@ -5,11 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SocialNetwork.Data;
 using SocialNetwork.Models;
 using SocialNetwork.Models.Users;
-using SocialNetwork.Models.Users.Status;
 using SocialNetwork.Models.ViewModels;
 
 namespace SocialNetwork.Controllers
@@ -31,7 +29,7 @@ namespace SocialNetwork.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
 
         /*
-         * Constructor method for the hoem controller
+         * Constructor method for the home controller
          */
         public HomeController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
@@ -52,12 +50,12 @@ namespace SocialNetwork.Controllers
             /*
              * Creating a application user instance and setting it to the logged in user.
              */
-            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+             ApplicationUser applicationUser = await _userManager.GetUserAsync(User);
 
             /* 
              * Setting the users posts to the posts we get from the database. Restricting it on userId.
              */
-            user.Posts = _db.Posts.Where(m => m.UserId == userId).ToList();
+            applicationUser.Posts = _db.Posts.Where(m => m.UserId == userId).ToList();
 
             /*
              * Create an instance of the ViewModel and assign it to a variable.
@@ -65,10 +63,9 @@ namespace SocialNetwork.Controllers
              */
             var homeViewModel = new HomeViewModel
             {
-                User = user,
+                User = applicationUser,
                 FriendSuggestions = _db.Users.Where(m => m.Id != userId).Take(5).ToList()
             };
-          
             return View(homeViewModel);
         }
 

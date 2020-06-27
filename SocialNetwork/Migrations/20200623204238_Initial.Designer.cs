@@ -10,8 +10,8 @@ using SocialNetwork.Data;
 namespace SocialNetwork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200622201821_CodeFriendRequestRelationship")]
-    partial class CodeFriendRequestRelationship
+    [Migration("20200623204238_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -225,20 +225,15 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriend", b =>
                 {
-                    b.Property<int>("RelationId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FriendId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("RelationId");
-
-                    b.HasIndex("FriendId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -247,7 +242,7 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriendRequest", b =>
                 {
-                    b.Property<int>("RelationId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -256,14 +251,12 @@ namespace SocialNetwork.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FriendId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("RelationId");
-
-                    b.HasIndex("FriendId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -349,10 +342,6 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriend", b =>
                 {
-                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "Friend")
-                        .WithMany()
-                        .HasForeignKey("FriendId");
-
                     b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "User")
                         .WithMany("UserFriends")
                         .HasForeignKey("UserId");
@@ -360,10 +349,6 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriendRequest", b =>
                 {
-                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "Friend")
-                        .WithMany()
-                        .HasForeignKey("FriendId");
-
                     b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "User")
                         .WithMany("UserFriendRequests")
                         .HasForeignKey("UserId");

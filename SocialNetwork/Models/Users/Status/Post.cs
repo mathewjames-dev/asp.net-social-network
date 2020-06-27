@@ -48,7 +48,7 @@ namespace SocialNetwork.Models.Users.Status
         }
 
         // User relationship
-        public virtual ApplicationUser User
+        public ApplicationUser User
         {
             get;
             set;

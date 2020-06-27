@@ -14,14 +14,12 @@ namespace SocialNetwork.Models.Users
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int RelationId { get; set; }
-
-        public string UserId { get; set; }
-
-        public ApplicationUser User { get; set; }
+        public int Id { get; set; }
 
         public string FriendId { get; set; }
 
-        public ApplicationUser Friend { get; set; }
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

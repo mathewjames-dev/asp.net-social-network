@@ -10,8 +10,8 @@ using SocialNetwork.Data;
 namespace SocialNetwork.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200622201645_AddUserFriendRequest")]
-    partial class AddUserFriendRequest
+    [Migration("20200627210133_AddProfilePhoto")]
+    partial class AddProfilePhoto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -200,6 +200,9 @@ namespace SocialNetwork.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ProfilePhoto")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -225,24 +228,45 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriend", b =>
                 {
-                    b.Property<int>("RelationId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FriendId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("RelationId");
-
-                    b.HasIndex("FriendId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("UserFriends");
+                });
+
+            modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriendRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Accepted")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FriendId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFriendRequests");
                 });
 
             modelBuilder.Entity("SocialNetwork.Models.Users.Status.Post", b =>
@@ -324,12 +348,16 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriend", b =>
                 {
-                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "Friend")
-                        .WithMany()
-                        .HasForeignKey("FriendId");
-
                     b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "User")
                         .WithMany("UserFriends")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SocialNetwork.Models.Users.ApplicationUserFriendRequest", b =>
+                {
+                    b.HasOne("SocialNetwork.Models.Users.ApplicationUser", "User")
+                        .WithMany("UserFriendRequests")
                         .HasForeignKey("UserId");
                 });
 
