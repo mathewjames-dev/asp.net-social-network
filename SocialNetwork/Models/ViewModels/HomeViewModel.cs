@@ -20,15 +20,6 @@ namespace SocialNetwork.Models.ViewModels
         }
 
         /*
-         * This is just passing the user model to the front end
-         */
-        public ApplicationUser User
-        {
-            get;
-            set;
-        }
-
-        /*
          * Passing The ApplicationUserFriend Model
          */
         public ApplicationUserFriend UserFriend
@@ -38,9 +29,27 @@ namespace SocialNetwork.Models.ViewModels
         }
 
         /*
+         * This is just passing the user model to the front end
+         */
+        public ApplicationUser User
+        {
+            get;
+            set;
+        }
+
+        /*
          * We want to get a list of friend suggestions
          */
         public IList<ApplicationUser> FriendSuggestions
+        {
+            get;
+            set;
+        }
+
+        /*
+         * We want to get a list of posts for the timeline
+         */
+        public IList<Post> TimelinePosts
         {
             get;
             set;
