@@ -393,6 +393,8 @@ C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.pdb
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.genruntimeconfig.cache
 C:\Users\mjames\Source\Repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Nav\_LoginPartial.cshtml.g.cs
+C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
 C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.csproj.CoreCompileInputs.cache
 C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cache

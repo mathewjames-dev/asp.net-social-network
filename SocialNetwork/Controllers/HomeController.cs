@@ -18,19 +18,9 @@ namespace SocialNetwork.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        /*
-         * We want to setup a _db variable which will be an instance of the DB context.
-         */
         private readonly ApplicationDbContext _db;
-
-        /*
-         * Setting up an instance of the user manager.
-         */
         private readonly UserManager<ApplicationUser> _userManager;
 
-        /*
-         * Constructor method for the home controller
-         */
         public HomeController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
@@ -42,30 +32,20 @@ namespace SocialNetwork.Controllers
          */
         public async Task<IActionResult> Index()
         {
-            /*
-             * Utilizing claims to get the logged in users id.
-             */
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            // Set the ApplicationUserClass UserId.
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            /*
-             * Creating a application user instance and setting it to the logged in user.
-             */
-             ApplicationUser applicationUser = await _userManager.GetUserAsync(User);
+            // Get the logged in user.
+            ApplicationUser applicationUser = await _userManager.FindByIdAsync(userId);
+            Debug.WriteLine(applicationUser.Posts.Count);
 
-            /* 
-             * Setting the users posts to the posts we get from the database. Restricting it on userId.
-             */
-            applicationUser.Posts = _db.Posts.Where(m => m.UserId == userId).ToList();
-
-            /*
-             * Create an instance of the ViewModel and assign it to a variable.
-             * Setting the logged in 
-             */
+            // Create an instance of the ViewModel and assign it to a variable.
             var homeViewModel = new HomeViewModel
             {
                 User = applicationUser,
-                FriendSuggestions = _db.Users.Where(m => m.Id != userId).Take(5).ToList()
+                FriendSuggestions = applicationUser.GetTopFiveFriendSuggestions()
             };
+
             return View(homeViewModel);
         }
 

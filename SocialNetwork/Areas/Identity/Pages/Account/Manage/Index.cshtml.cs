@@ -111,13 +111,17 @@ namespace SocialNetwork.Areas.Identity.Pages.Account.Manage
              */
             var profilePhotoFileName = ContentDispositionHeaderValue.Parse(Input.ProfilePhoto.ContentDisposition)
                 .FileName.Trim('"');
-            var profilePhotoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Input.ProfilePhoto.FileName);
+
+            var profilePhotoPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", 
+                Input.ProfilePhoto.FileName);
+
             using (System.IO.Stream stream = new FileStream(profilePhotoPath, FileMode.Create))
             {
                 await Input.ProfilePhoto.CopyToAsync(stream);
             }
 
             user.ProfilePhoto = "/images/" + profilePhotoFileName;
+
             user.FirstName = Input.FirstName;
             user.LastName = Input.LastName;
 

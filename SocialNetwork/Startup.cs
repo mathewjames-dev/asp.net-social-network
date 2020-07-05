@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using SocialNetwork.Models.Users;
 using SocialNetwork.AdditionalClaims;
 using SocialNetwork.Classes.Hubs;
+using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace SocialNetwork
 {
@@ -27,7 +28,8 @@ namespace SocialNetwork
             // Setting up the database context.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection"))
+                    .UseLazyLoadingProxies());
 
             // Setting the default identity model.
             services.AddIdentity<ApplicationUser, IdentityRole>()

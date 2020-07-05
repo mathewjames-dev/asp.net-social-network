@@ -13,14 +13,10 @@ namespace SocialNetwork.Models.Users
 {
     public class ApplicationUser : IdentityUser
     {
-        /*
-         * We want to setup a _db variable which will be an instance of the DB context.
-         */
+        // We want to setup a _db variable which will be an instance of the DB context.
         private readonly ApplicationDbContext _db;
 
-        /*
-         * Constructor methods
-         */
+        // Constructor methods
         public ApplicationUser()
         { }
         public ApplicationUser(ApplicationDbContext db)
@@ -34,7 +30,6 @@ namespace SocialNetwork.Models.Users
             get;
             set;
         }
-
 
         // First Name Column
         [PersonalData]
@@ -53,22 +48,21 @@ namespace SocialNetwork.Models.Users
         }
 
         // Posts Relationship
-        [PersonalData]
-        public ICollection<Post> Posts
-        {
-            get;
-            set;
-        }
-
-        // Friend Requests Relationship
-        public ICollection<ApplicationUserFriendRequest> UserFriendRequests
+        public virtual ICollection<Post> Posts
         {
             get;
             set;
         }
 
         // Friends Relationship
-        public ICollection<ApplicationUserFriend> UserFriends
+        public virtual ICollection<ApplicationUserFriend> UserFriends
+        {
+            get;
+            set;
+        }
+
+        // Friend Requests Relationship
+        public virtual ICollection<ApplicationUserFriendRequest> UserFriendRequests
         {
             get;
             set;
@@ -84,6 +78,11 @@ namespace SocialNetwork.Models.Users
             var applicationUserFriend = _db.UserFriends.Where(m => m.UserId == userId && m.FriendId == friendId).FirstOrDefault();
 
             return applicationUserFriend != null;
+        }
+
+        public IList<ApplicationUser> GetTopFiveFriendSuggestions()
+        {
+            return _db.Users.Where(m => m.Id != this.Id).Take(5).ToList();
         }
     }
 }
