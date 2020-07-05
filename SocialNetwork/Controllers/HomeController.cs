@@ -20,15 +20,13 @@ namespace SocialNetwork.Controllers
     public class HomeController : Controller
     {
         // Setting the private variables that we will utilize in the controller.
-        private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly Timeline _timeLine;
+        private readonly TimelineService _timeLine;
 
-        public HomeController(ApplicationDbContext db, UserManager<ApplicationUser> userManager,
-            Timeline timeLine)
+        public HomeController(UserManager<ApplicationUser> userManager,
+            TimelineService timeLine)
         {
             // Injecting the classes into the controller and assigning to variables.
-            _db = db;
             _userManager = userManager;
             _timeLine = timeLine;
         }

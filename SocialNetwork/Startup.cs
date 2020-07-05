@@ -10,6 +10,7 @@ using SocialNetwork.Models.Users;
 using SocialNetwork.AdditionalClaims;
 using SocialNetwork.Classes.Hubs;
 using Microsoft.EntityFrameworkCore.Proxies;
+using SocialNetwork.Classes.Users.Timeline;
 
 namespace SocialNetwork
 {
@@ -40,6 +41,10 @@ namespace SocialNetwork
             // Setting up the additional claims class for the identity user.
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>,
                 AdditionalUserClaimsPrincipalFactory>();
+
+            // Setting up additional classes
+            services.AddScoped<TimelineService>();
+            services.AddScoped<Timeline>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

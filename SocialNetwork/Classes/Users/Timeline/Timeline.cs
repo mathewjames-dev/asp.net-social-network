@@ -10,6 +10,9 @@ namespace SocialNetwork.Classes.Users.Timeline
         // Set the private class variables.
         private readonly ApplicationDbContext _db;
 
+        public Timeline()
+        {}
+
         public Timeline(ApplicationDbContext db)
         {
             _db = db;
