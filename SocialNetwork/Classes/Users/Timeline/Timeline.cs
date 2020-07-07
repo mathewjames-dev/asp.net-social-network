@@ -20,8 +20,7 @@ namespace SocialNetwork.Classes.Users.Timeline
 
         public List<Post> BuildHomeTimeline(string userId)
         {
-            List<Post> posts = _db.Posts.Where(m => m.UserId == userId).ToList();
-            return posts;
+            return _db.Posts.Where(m => m.UserId == userId).ToList();
         }
     }
 }

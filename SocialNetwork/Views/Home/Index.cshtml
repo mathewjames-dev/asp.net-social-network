@@ -1,12 +1,16 @@
 ﻿@using SocialNetwork.Models.Users
 @using Microsoft.AspNetCore.Identity
-@using SocialNetwork.Models.Users.Status 
+@using SocialNetwork.Models.Users.Status
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @model SocialNetwork.Models.ViewModels.HomeViewModel
 
 @{
     ViewData["Title"] = "Home Page";
+}
+
+@section Head{
+    <link rel="stylesheet" href="~/css/posts/timeline.css" />
 }
 
 <div class="container">
@@ -27,7 +31,7 @@
                     @foreach (Post post in Model.TimelinePosts)
                     {
                         <div class="post-container__item">
-                            <h3>@post.User.FirstName</h3><br />
+                            <h3>@post.User.FirstName</h3>
                             @post.Content
                             <div class="item-overlay">
                                 <div class="icon-mail-reply action"></div>
@@ -37,21 +41,21 @@
                         </div>
                     }
                     <!--
-        {
-            <div class="post-container__item" style="border: 1px solid black; margin: 15px; padding: 15px;">
-                <img style="width: 45px;float:left;margin-right: 10px;" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/balapa.jpg">
-                <div class="post__content">
-                    <span class="post__content-name"></span>
-                    <span class="post__content-date"></span>
-                    <div class="post__content-status"></div>
-                    @using (Html.BeginForm("StatusDelete", "Status", FormMethod.Post))
                     {
-                        <input type="hidden" value="" name="statusId" />
-                        <input type="submit" value="Delete" />
-                    }
-                </div>
-            </div>
-        }-->
+                        <div class="post-container__item" style="border: 1px solid black; margin: 15px; padding: 15px;">
+                            <img style="width: 45px;float:left;margin-right: 10px;" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/balapa.jpg">
+                            <div class="post__content">
+                                <span class="post__content-name"></span>
+                                <span class="post__content-date"></span>
+                                <div class="post__content-status"></div>
+                                @using (Html.BeginForm("StatusDelete", "Status", FormMethod.Post))
+                                {
+                                    <input type="hidden" value="" name="statusId" />
+                                    <input type="submit" value="Delete" />
+                                }
+                            </div>
+                        </div>
+                    }-->
                 </div>
             </div>
         </div>
