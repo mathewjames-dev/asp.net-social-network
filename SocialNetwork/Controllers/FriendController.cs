@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using SocialNetwork.Classes.Hubs;
 using SocialNetwork.Data;
 using SocialNetwork.Models.Users;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace SocialNetwork.Controllers
@@ -36,9 +35,9 @@ namespace SocialNetwork.Controllers
 
         public FriendController(ApplicationDbContext db, IHubContext<GlobalHub> globalHubContext, UserManager<ApplicationUser> userManager)
         {
-            _db = db;
-            _globalHubContext = globalHubContext;
-            _userManager = userManager;
+            this._db = db;
+            this._globalHubContext = globalHubContext;
+            this._userManager = userManager;
         }
 
         /*

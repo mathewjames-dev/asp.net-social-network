@@ -68,6 +68,13 @@ namespace SocialNetwork.Models.Users
             set;
         }
 
+        // Post Likes Relationship
+        public virtual ICollection<PostLike> PostLikes
+        {
+            get;
+            set;
+        }
+
         public bool IsFriend(string userId, string friendId)
         {
             if (userId == null || friendId == null)

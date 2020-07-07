@@ -27,8 +27,8 @@ namespace SocialNetwork.Controllers
             TimelineService timeLine)
         {
             // Injecting the classes into the controller and assigning to variables.
-            _userManager = userManager;
-            _timeLine = timeLine;
+           this. _userManager = userManager;
+           this._timeLine = timeLine;
         }
 
         /*

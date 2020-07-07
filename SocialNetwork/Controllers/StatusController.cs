@@ -32,8 +32,8 @@ namespace SocialNetwork.Controllers
          */
         public StatusController(ApplicationDbContext db, IHubContext<GlobalHub> globalHubContext)
         {
-            _db = db;
-            _globalHubContext = globalHubContext;
+            this._db = db;
+            this._globalHubContext = globalHubContext;
         }
 
         /*

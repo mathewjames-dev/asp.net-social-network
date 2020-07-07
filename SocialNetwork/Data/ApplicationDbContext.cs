@@ -20,6 +20,8 @@ namespace SocialNetwork.Data
         public virtual DbSet<ApplicationUserFriend> UserFriends { get; set; }
         public virtual DbSet<ApplicationUserFriendRequest> UserFriendRequests { get; set; }
 
+        public virtual DbSet<PostLike> PostLikes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -38,6 +40,9 @@ namespace SocialNetwork.Data
                     .WithOne(h => h.User)
                     .HasForeignKey(i => i.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
+                aU.HasMany(j => j.PostLikes)
+                    .WithOne(k => k.User)
+                    .HasForeignKey(l => l.UserId);
             });
         }
     }
