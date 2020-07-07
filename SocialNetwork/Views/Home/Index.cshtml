@@ -27,11 +27,11 @@
             </div>
 
             <div class="row">
-                <div class="post-container" style="width: 100%;">
+                <div class="post-container">
                     @foreach (Post post in Model.TimelinePosts)
                     {
                         <div class="post-container__item">
-                            <h3>@post.User.FirstName</h3>
+                            <h3><span>posted by </span>@post.User.FirstName</h3>
                             @post.Content
                             <div class="item-overlay">
                                 <div class="icon-mail-reply action"></div>

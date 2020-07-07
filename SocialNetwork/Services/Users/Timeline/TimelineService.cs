@@ -10,6 +10,9 @@ namespace SocialNetwork.Classes.Users.Timeline
         // Setting the private variables.
         private readonly Timeline _timeline;
 
+        public TimelineService()
+        {}
+
         // Constructor for the service
         public TimelineService(Timeline timeline)
         {

@@ -1,5 +1,6 @@
 ﻿.post-container {
-    width: 75%;
+    width: 100%;
+    background-color: #ecf0f1;
     display: block;
     position: relative;
     padding-left: 20px;
@@ -8,11 +9,11 @@
 }
 
 .post-container__item {
-    width: 100%;
+    width: 75%;
     padding: .5em 1em;
     line-height: 1.4em;
-    padding: 20px;
-    background-color: #ecf0f1;
+    margin: 20px;
+    background-color: white;
     position: relative;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -23,6 +24,15 @@
     display: inline-block;
 }
 
-.post-container__item:hover > .over-bubble {
+.post-container__item:hover > .item-overlay {
     opacity: 1;
+}
+
+.post-container__item > h3 {
+    font-size: 18px;
+    color: #95a5a6;
+}
+
+.post-container__item > h3 > span {
+    font-size: 12px;
 }
