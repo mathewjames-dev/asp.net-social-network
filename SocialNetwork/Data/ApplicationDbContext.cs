@@ -26,23 +26,31 @@ namespace SocialNetwork.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<ApplicationUser>(aU =>
+            builder.Entity<ApplicationUser>(aB =>
             {
-                aU.HasMany<Post>(a => a.Posts)
+                aB.HasMany<Post>(a => a.Posts)
                     .WithOne(b => b.User)
                     .HasForeignKey(c => c.UserId)
-                    .OnDelete(DeleteBehavior.Cascade);   
-                aU.HasMany(d => d.UserFriends)
+                    .OnDelete(DeleteBehavior.Cascade);
+                aB.HasMany(d => d.UserFriends)
                     .WithOne(e => e.User)
                     .HasForeignKey(f => f.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
-                aU.HasMany(g => g.UserFriendRequests)
+                aB.HasMany(g => g.UserFriendRequests)
                     .WithOne(h => h.User)
                     .HasForeignKey(i => i.UserId)
                     .OnDelete(DeleteBehavior.Cascade);
-                aU.HasMany(j => j.PostLikes)
+                aB.HasMany(j => j.PostLikes)
                     .WithOne(k => k.User)
                     .HasForeignKey(l => l.UserId);
+            });
+
+            builder.Entity<Post>(aC =>
+            {
+                aC.HasMany<PostLike>(a => a.Likes)
+                .WithOne(b => b.Post)
+                .HasForeignKey(c => c.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

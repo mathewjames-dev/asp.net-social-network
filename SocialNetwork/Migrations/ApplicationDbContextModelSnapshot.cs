@@ -392,8 +392,8 @@ namespace SocialNetwork.Migrations
 
             modelBuilder.Entity("SocialNetwork.Models.Users.Status.PostLike", b =>
                 {
-                    b.HasOne("SocialNetwork.Models.Users.Status.Post", "post")
-                        .WithMany()
+                    b.HasOne("SocialNetwork.Models.Users.Status.Post", "Post")
+                        .WithMany("Likes")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -53,5 +53,12 @@ namespace SocialNetwork.Models.Users.Status
             get;
             set;
         }
+
+        // Likes Relationship.
+        public virtual ICollection<PostLike> Likes
+        {
+            get;
+            set;
+        }
     }
 }

@@ -32,6 +32,6 @@ namespace SocialNetwork.Models.Users.Status
 
         public virtual ApplicationUser User { get; set; }
 
-        public virtual Post post { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

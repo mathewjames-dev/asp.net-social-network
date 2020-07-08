@@ -37,7 +37,7 @@
     font-size: 12px;
 }
 
-.item-overlay {
+.post-container__item-overlay {
     line-height: 1.4em;
     background-color: rgba(236, 240, 241, 0.8);
     position: relative;
@@ -71,7 +71,7 @@
     text-shadow: white 1px 1px 0;
 }
 
-.item-overlay > div {
+.post-container__item-overlay > div {
     float: left;
     width: 45%;
     margin-right: .3em;
@@ -89,7 +89,7 @@
     transition-timing-function: ease-in;
 }
 
-.item-overlay > div > .fas {
+.post-container__item-overlay > div > .fas {
     display: inline;
     width: auto;
     height: auto;
@@ -107,4 +107,9 @@
 
 .post-liked{
     color: red;
+}
+
+.post-container__item-likes {
+    color: grey;
+    font-size: 12px;
 }

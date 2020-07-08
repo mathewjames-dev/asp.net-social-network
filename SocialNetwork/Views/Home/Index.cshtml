@@ -33,7 +33,7 @@
                         <div class="post-container__item">
                             <h3><span>posted by </span>@post.User.FirstName</h3>
                             @post.Content
-                            <div class="item-overlay">
+                            <div class="post-container__item-overlay">
                                 <div>
                                     <i class="fas fa-reply"></i>
                                 </div>
@@ -43,6 +43,8 @@
                                     <input type="hidden" name="postId" value="@post.StatusId" />
                                 </div>
                             </div>
+                            <br />
+                            <span class="post-container__item-likes">@post.Likes.Count like@(post.Likes.Count > 1 ? "s" : "")</span>
                         </div>
                     }
                     <!--
