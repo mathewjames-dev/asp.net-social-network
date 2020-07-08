@@ -23,9 +23,11 @@ namespace SocialNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                PostLike postLike = new PostLike();
-                postLike.UserId = UserId;
-                postLike.PostId = PostId;
+                PostLike postLike = new PostLike
+                {
+                    UserId = UserId,
+                    PostId = PostId
+                };
                 _db.PostLikes.Add(postLike);
                 _db.SaveChanges();
 
