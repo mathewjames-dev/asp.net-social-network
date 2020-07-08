@@ -100,3 +100,11 @@
     background-repeat: repeat;
     margin-top: 0;
 }
+
+.post-unliked{
+    color: grey;
+}
+
+.post-liked{
+    color: red;
+}

@@ -75,18 +75,23 @@ namespace SocialNetwork.Models.Users
             set;
         }
 
+        // Check to see if the user is friends with the friendId.
         public bool IsFriend(string userId, string friendId)
         {
-            if (userId == null || friendId == null)
-            {
-                return false;
-            }
-
             var applicationUserFriend = _db.UserFriends.Where(m => m.UserId == userId && m.FriendId == friendId).FirstOrDefault();
 
             return applicationUserFriend != null;
         }
 
+        // Check to see if the user has already liked the post.
+        public bool PostLiked(string userId, int postId)
+        {
+            var postLike = _db.PostLikes.Where(m => m.UserId == userId && m.PostId == postId).FirstOrDefault();
+
+            return postLike != null;
+        }
+
+        // Returns a list of top 5 friend suggestions
         public IList<ApplicationUser> GetTopFiveFriendSuggestions()
         {
             return _db.Users.Where(m => m.Id != this.Id).Take(5).ToList();

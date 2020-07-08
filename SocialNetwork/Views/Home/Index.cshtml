@@ -38,7 +38,7 @@
                                     <i class="fas fa-reply"></i>
                                 </div>
                                 <div>
-                                    <i class='fas fa-heart'></i>
+                                    <i class='fas fa-heart @(!Model.User.PostLiked(Model.User.Id, post.StatusId) ? "post-unliked" : "post-liked")'></i>
                                     <input type="hidden" name="userId" value="@Model.User.Id" />
                                     <input type="hidden" name="postId" value="@post.StatusId" />
                                 </div>
@@ -127,14 +127,27 @@
     </script>
 
     <script>
-        $('.fa-heart').on('click', function () {
+        $(document).on('click', '.post-unliked', function () {
             var data = {
                 userId : $(this).parent().find('input[name="userId"]').val(),
                 postId : $(this).parent().find('input[name="postId"]').val()
             }
-            console.log(data);
-            $.post("/Ajax/FaveStatus", { UserId: data.userId, PostId: data.postId }, function (response) {
-                alert(response);
+            $.post("/Ajax/LikePost", { UserId: data.userId, PostId: data.postId }, function (response) {
+                if (response == "Success") {
+                    $('.post-unliked').removeClass('post-unliked').addClass('post-liked');
+                }
+            });
+        });
+
+        $(document).on('click', '.post-liked', function () {
+            var data = {
+                userId: $(this).parent().find('input[name="userId"]').val(),
+                postId: $(this).parent().find('input[name="postId"]').val()
+            }
+            $.post("/Ajax/UnlikePost", { UserId: data.userId, PostId: data.postId }, function (response) {
+                if (response == "Success") {
+                    $('.post-liked').removeClass('post-liked').addClass('post-unliked');
+                }
             });
         });
     </script>

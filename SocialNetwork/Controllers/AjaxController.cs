@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Data;
 using SocialNetwork.Models.Users.Status;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SocialNetwork.Controllers
@@ -16,8 +17,9 @@ namespace SocialNetwork.Controllers
             this._db = db;
         }
 
+        // Utilized to like a users post.
         [HttpPost]
-        public string FaveStatus(string UserId, int PostId)
+        public string LikePost(string UserId, int PostId)
         {
             if (ModelState.IsValid)
             {
@@ -25,6 +27,24 @@ namespace SocialNetwork.Controllers
                 postLike.UserId = UserId;
                 postLike.PostId = PostId;
                 _db.PostLikes.Add(postLike);
+                _db.SaveChanges();
+
+                return "Success";
+            }
+            else
+            {
+                return "Failed";
+            }
+        }
+
+        // Utilized to unlike a users post.
+        [HttpPost]
+        public string UnlikePost(string UserId, int PostId)
+        {
+            if (ModelState.IsValid)
+            {
+                PostLike postLike = _db.PostLikes.Where(m => m.UserId == UserId && m.PostId == PostId).FirstOrDefault();
+                _db.PostLikes.Remove(postLike);
                 _db.SaveChanges();
 
                 return "Success";
