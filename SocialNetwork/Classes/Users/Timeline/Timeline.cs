@@ -22,5 +22,11 @@ namespace SocialNetwork.Classes.Users.Timeline
         {
             return _db.Posts.Where(m => m.UserId == userId).ToList();
         }
+
+        public string BuildPostLikesHtml(int postId)
+        {
+            Post post = _db.Posts.Where(m => m.StatusId == postId).FirstOrDefault();
+            return post.Likes.Count.ToString() + (post.Likes.Count > 1 ? " likes" : post.Likes.Count == 0 ? "" : " likes");
+        }
     }
 }

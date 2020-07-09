@@ -24,5 +24,11 @@ namespace SocialNetwork.Classes.Users.Timeline
         {
             return _timeline.BuildHomeTimeline(userId);
         }
+
+        // Build post likes html.
+        public string BuildPostLikesHtml(int postId)
+        {
+            return _timeline.BuildPostLikesHtml(postId);
+        }
     }
 }
