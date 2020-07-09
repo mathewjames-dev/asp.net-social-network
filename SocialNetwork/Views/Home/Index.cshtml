@@ -30,22 +30,24 @@
                 <div class="post-container">
                     @foreach (Post post in Model.TimelinePosts)
                     {
-                        <div class="post-container__item">
-                            <h3><span>posted by </span>@post.User.FirstName</h3>
-                            @post.Content
-                            <div class="post-container__item-overlay">
-                                <div>
-                                    <i class="fas fa-reply"></i>
-                                </div>
-                                <div>
-                                    <i class='fas fa-heart @(!Model.User.PostLiked(Model.User.Id, post.StatusId) ? "post-unliked" : "post-liked")'></i>
-                                    <input type="hidden" name="userId" value="@Model.User.Id" />
-                                    <input type="hidden" name="postId" value="@post.StatusId" />
-                                </div>
+                    <div class="post-container__item">
+                        <h3><span>posted by </span>@post.User.FirstName</h3>
+                        @post.Content
+                        <div class="post-container__item-overlay">
+                            <div>
+                                <i class="fas fa-reply"></i>
                             </div>
-                            <br />
-                            <span class="post-container__item-likes">@post.Likes.Count like@(post.Likes.Count > 1 ? "s" : "")</span>
+                            <div>
+                                <i class='fas fa-heart @(!Model.User.PostLiked(Model.User.Id, post.StatusId) ? "post-unliked" : "post-liked")'></i>
+                                <input type="hidden" name="userId" value="@Model.User.Id" />
+                                <input type="hidden" name="postId" value="@post.StatusId" />
+                            </div>
                         </div>
+                        <br />
+                        <span class="post-container__item-likes" style="@(post.Likes.Count == 0 ? "display:none;" : "") ">
+                            @post.Likes.Count like@(post.Likes.Count > 1 ? "s" : "")
+                        </span>
+                    </div>
                     }
                     <!--
                     {
@@ -134,9 +136,10 @@
                 userId : $(this).parent().find('input[name="userId"]').val(),
                 postId : $(this).parent().find('input[name="postId"]').val()
             }
-            $.post("/Ajax/LikePost", { UserId: data.userId, PostId: data.postId }, function (response) {
-                if (response == "Success") {
+            $.post("/Ajax/LikePost", { UserId: data.userId, PostId: data.postId }, function (data) {
+                if (data.response == "Success") {
                     $('.post-unliked').removeClass('post-unliked').addClass('post-liked');
+                    postLikesHtml(data);
                 }
             });
         });
@@ -146,11 +149,20 @@
                 userId: $(this).parent().find('input[name="userId"]').val(),
                 postId: $(this).parent().find('input[name="postId"]').val()
             }
-            $.post("/Ajax/UnlikePost", { UserId: data.userId, PostId: data.postId }, function (response) {
-                if (response == "Success") {
+            $.post("/Ajax/UnlikePost", { UserId: data.userId, PostId: data.postId }, function (data) {
+                if (data.response == "Success") {
                     $('.post-liked').removeClass('post-liked').addClass('post-unliked');
+                    postLikesHtml(data);
                 }
             });
         });
+
+        function postLikesHtml(data) {
+            if (data.likesHtml !== "0") {
+                $('.post-container__item-likes').text(data.likesHtml).show();
+            } else {
+                $('.post-container__item-likes').hide();
+            }
+        }
     </script>
 }

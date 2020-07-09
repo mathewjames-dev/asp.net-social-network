@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using SocialNetwork.Classes.Users.Timeline;
 using SocialNetwork.Data;
 using SocialNetwork.Models.Users.Status;
+using SocialNetwork.Models.ViewModels;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,16 +14,20 @@ namespace SocialNetwork.Controllers
     public class AjaxController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly TimelineService _timeLine;
 
-        public AjaxController(ApplicationDbContext db)
+        public AjaxController(ApplicationDbContext db, TimelineService timeLine)
         {
             this._db = db;
+            this._timeLine = timeLine;
         }
 
         // Utilized to like a users post.
         [HttpPost]
-        public string LikePost(string UserId, int PostId)
+        public JsonResult LikePost(string UserId, int PostId)
         {
+            AjaxPostLikedViewModel postLikedViewModel = new AjaxPostLikedViewModel();
+
             if (ModelState.IsValid)
             {
                 PostLike postLike = new PostLike
@@ -31,29 +38,36 @@ namespace SocialNetwork.Controllers
                 _db.PostLikes.Add(postLike);
                 _db.SaveChanges();
 
-                return "Success";
+                postLikedViewModel.Response = "Success";
+                postLikedViewModel.LikesHtml = _timeLine.BuildPostLikesHtml(PostId);
+                return Json(postLikedViewModel);
             }
             else
             {
-                return "Failed";
+                postLikedViewModel.Response = "Failed";
+                return Json(postLikedViewModel);
             }
         }
 
         // Utilized to unlike a users post.
         [HttpPost]
-        public string UnlikePost(string UserId, int PostId)
+        public JsonResult UnlikePost(string UserId, int PostId)
         {
+            AjaxPostLikedViewModel postLikedViewModel = new AjaxPostLikedViewModel();
             if (ModelState.IsValid)
             {
                 PostLike postLike = _db.PostLikes.Where(m => m.UserId == UserId && m.PostId == PostId).FirstOrDefault();
                 _db.PostLikes.Remove(postLike);
                 _db.SaveChanges();
 
-                return "Success";
+                postLikedViewModel.Response = "Success";
+                postLikedViewModel.LikesHtml = _timeLine.BuildPostLikesHtml(PostId);
+                return Json(postLikedViewModel);
             }
             else
             {
-                return "Failed";
+                postLikedViewModel.Response = "Failed";
+                return Json(postLikedViewModel);
             }
         }
     }

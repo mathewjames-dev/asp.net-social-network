@@ -24,9 +24,9 @@
     display: inline-block;
 }
 
-.post-container__item:hover > .item-overlay {
-    opacity: 1;
-}
+.post-container__item:hover > .post-container__item-overlay {
+        opacity: 1;
+    }
 
 .post-container__item > h3 {
     font-size: 18px;
@@ -38,6 +38,7 @@
 }
 
 .post-container__item-overlay {
+    padding: 10px;
     line-height: 1.4em;
     background-color: rgba(236, 240, 241, 0.8);
     position: relative;
