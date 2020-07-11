@@ -15,13 +15,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm">
-            <div class="row">
+        <div class="col-sm timeline-container">
+            <div class="row status-post">
                 <!-- Form to post a status update -->
                 @using (Html.BeginForm("StatusPost", "Status", FormMethod.Post))
                 {
-                    @Html.LabelFor(m => m.Post.Content)
-                    @Html.TextBoxFor(m => m.Post.Content)
+                    @Html.TextBoxFor(m => m.Post.Content, new { @placeholder = "Enter a status update.." })
                     <input type="submit" value="Post Update" />
                 }
             </div>
@@ -136,10 +135,11 @@
                 userId : $(this).parent().find('input[name="userId"]').val(),
                 postId : $(this).parent().find('input[name="postId"]').val()
             }
+            var $this = $(this).parent().parent().parent();
             $.post("/Ajax/LikePost", { UserId: data.userId, PostId: data.postId }, function (data) {
                 if (data.response == "Success") {
-                    $('.post-unliked').removeClass('post-unliked').addClass('post-liked');
-                    postLikesHtml(data);
+                    $this.find('.post-unliked').removeClass('post-unliked').addClass('post-liked');
+                    postLikesHtml($this, data);
                 }
             });
         });
@@ -149,19 +149,21 @@
                 userId: $(this).parent().find('input[name="userId"]').val(),
                 postId: $(this).parent().find('input[name="postId"]').val()
             }
+            var $this = $(this).parent().parent().parent();
+
             $.post("/Ajax/UnlikePost", { UserId: data.userId, PostId: data.postId }, function (data) {
                 if (data.response == "Success") {
-                    $('.post-liked').removeClass('post-liked').addClass('post-unliked');
-                    postLikesHtml(data);
+                    $this.find('.post-liked').removeClass('post-liked').addClass('post-unliked');
+                    postLikesHtml($this, data);
                 }
             });
         });
 
-        function postLikesHtml(data) {
+        function postLikesHtml($element, data) {
             if (data.likesHtml !== "0") {
-                $('.post-container__item-likes').text(data.likesHtml).show();
+                $element.find('.post-container__item-likes').text(data.likesHtml).show();
             } else {
-                $('.post-container__item-likes').hide();
+                $element.find('.post-container__item-likes').hide();
             }
         }
     </script>
