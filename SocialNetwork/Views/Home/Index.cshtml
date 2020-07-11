@@ -33,13 +33,25 @@
                         <h3><span>posted by </span>@post.User.FirstName</h3>
                         @post.Content
                         <div class="post-container__item-overlay">
-                            <div>
-                                <i class="fas fa-reply"></i>
+                            <div class="overlay-user-actions">
+                                <div>
+                                    <i class="fas fa-reply"></i>
+                                </div>
+                                <div>
+                                    <i class='fas fa-heart @(!Model.User.PostLiked(Model.User.Id, post.StatusId) ? "post-unliked" : "post-liked")'></i>
+                                    <input type="hidden" name="userId" value="@Model.User.Id" />
+                                    <input type="hidden" name="postId" value="@post.StatusId" />
+                                </div>
                             </div>
-                            <div>
-                                <i class='fas fa-heart @(!Model.User.PostLiked(Model.User.Id, post.StatusId) ? "post-unliked" : "post-liked")'></i>
-                                <input type="hidden" name="userId" value="@Model.User.Id" />
-                                <input type="hidden" name="postId" value="@post.StatusId" />
+
+                            <div class="overlay-status-reply">
+                                @using (Html.BeginForm("StatusPost", "Status", FormMethod.Post))
+                                {
+                                    @Html.TextBoxFor(m => m.Post.Content, new { @placeholder = "Enter a status update.." })
+                                    <input type="submit" value="Post Update" />
+                                }
+
+                                <i class="fas fa-times"></i>
                             </div>
                         </div>
                         <br />
@@ -166,5 +178,13 @@
                 $element.find('.post-container__item-likes').hide();
             }
         }
+
+        $('.fa-reply').on('click', function () {
+            $(this).parent().parent().hide().parent().find('.overlay-status-reply').show('slow');
+        });
+
+        $('.fa-times').on('click', function () {
+            $(this).parent().hide().parent().find('.overlay-user-actions').show('slow');
+        });
     </script>
 }
