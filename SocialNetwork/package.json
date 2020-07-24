@@ -33,5 +33,9 @@
     "ProjectOpened": [
       "watch"
     ]
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "vue": "^2.6.11"
   }
 }

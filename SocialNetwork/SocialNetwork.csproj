@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Frontend\Scripts\signalr.js" />
+    <None Remove="Frontend\Scripts\signalr.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Frontend\Scripts\site.js" />
   </ItemGroup>
 
@@ -23,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Frontend\Scripts\Routing\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
