@@ -8,12 +8,9 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+   
 
-@section Head{
-    <link rel="stylesheet" href="~/css/posts/timeline.css" />
-}
-
-<div class="container">
+<div id="home" class="container">
     <div class="row">
         <div class="col-sm timeline-container">
             <div class="row status-post">
@@ -38,7 +35,8 @@
                                     <i class="fas fa-reply"></i>
                                 </div>
                                 <div>
-                                    <i class='fas fa-heart @(!Model.User.PostLiked(Model.User.Id, post.StatusId) ? "post-unliked" : "post-liked")'></i>
+                                    <i class='fas fa-heart @(!Model.User.PostLiked(Model.User.Id, post.StatusId) ? "post-unliked" : "post-liked")'
+                                       v-on:click="likeStatus"></i>
                                     <input type="hidden" name="userId" value="@Model.User.Id" />
                                     <input type="hidden" name="postId" value="@post.StatusId" />
                                 </div>
@@ -116,31 +114,6 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/signalr.js"></script>
-    <script>
-        "use strict";
-
-        var connection = new signalR.HubConnectionBuilder()
-            .withUrl("/global")
-            .configureLogging(signalR.LogLevel.Information)
-            .build();
-
-        connection.start().then(
-            () => console.log("connected")
-        ).catch(
-            err => console.error(err)
-        );
-
-        connection.on("BroadcastMessage", function (user, message) {
-            console.log('received');
-            var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            var encodedMsg = user + " says " + msg;
-            var li = document.createElement("li");
-            li.textContent = encodedMsg;
-            alert(encodedMsg);
-        });
-    </script>
-
     <script>
         /*
         $(document).on('click', '.post-unliked', function () {
