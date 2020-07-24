@@ -231,7 +231,7 @@
         }
 
         &__item:hover {
-            &-overlay {
+            .post-container__item-overlay {
                 opacity: 1;
             }
         }
