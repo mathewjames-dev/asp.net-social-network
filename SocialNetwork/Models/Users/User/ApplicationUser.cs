@@ -78,17 +78,13 @@ namespace SocialNetwork.Models.Users
         // Check to see if the user is friends with the friendId.
         public bool IsFriend(string userId, string friendId)
         {
-            var applicationUserFriend = _db.UserFriends.Where(m => m.UserId == userId && m.FriendId == friendId).FirstOrDefault();
-
-            return applicationUserFriend != null;
+            return UserFriends.Where(m => m.UserId == userId && m.FriendId == friendId).FirstOrDefault() != null;
         }
 
         // Check to see if the user has already liked the post.
         public bool PostLiked(string userId, int postId)
         {
-            var postLike = _db.PostLikes.Where(m => m.UserId == userId && m.PostId == postId).FirstOrDefault();
-
-            return postLike != null;
+            return PostLikes.Where(m => m.UserId == userId && m.PostId == postId).FirstOrDefault() != null;
         }
 
         // Returns a list of top 5 friend suggestions
