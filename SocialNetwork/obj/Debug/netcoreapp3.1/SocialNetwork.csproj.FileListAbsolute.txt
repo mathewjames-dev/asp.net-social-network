@@ -398,3 +398,5 @@ C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\
 C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.csproj.CoreCompileInputs.cache
 C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\obj\Debug\netcoreapp3.1\SocialNetwork.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\bin\Debug\netcoreapp3.1\package-lock.json
+C:\Users\mjames\source\repos\Social Networking Website In ASP.NET\SocialNetwork\bin\Debug\netcoreapp3.1\package.json

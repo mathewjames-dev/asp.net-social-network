@@ -1,0 +1,239 @@
+﻿.timeline-container {
+    background-color: #ecf0f1;
+
+    .status-post {
+        form {
+            margin: 20px auto;
+
+            input[type="text"] {
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid black;
+                background: #eee;
+                -webkit-transition-property: all;
+                -moz-transition-property: all;
+                -o-transition-property: all;
+                transition-property: all;
+                -webkit-transition-duration: 0.3s;
+                -moz-transition-duration: 0.3s;
+                -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                -webkit-transition-timing-function: ease-in;
+                -moz-transition-timing-function: ease-in;
+                -o-transition-timing-function: ease-in;
+                transition-timing-function: ease-in;
+            }
+
+            input[type="text"]:hover {
+                background: white;
+                -webkit-transition-property: all;
+                -moz-transition-property: all;
+                -o-transition-property: all;
+                transition-property: all;
+                -webkit-transition-duration: 0.3s;
+                -moz-transition-duration: 0.3s;
+                -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                -webkit-transition-timing-function: ease-in;
+                -moz-transition-timing-function: ease-in;
+                -o-transition-timing-function: ease-in;
+                transition-timing-function: ease-in;
+            }
+
+            input[type="text"]:focus {
+                background: white;
+                border: 3px solid #8b0000;
+                border-radius: 8px;
+            }
+
+            input[type="submit"] {
+                margin-top: 10px;
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid black;
+                background: #eee;
+                -webkit-transition-property: all;
+                -moz-transition-property: all;
+                -o-transition-property: all;
+                transition-property: all;
+                -webkit-transition-duration: 0.3s;
+                -moz-transition-duration: 0.3s;
+                -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                -webkit-transition-timing-function: ease-in;
+                -moz-transition-timing-function: ease-in;
+                -o-transition-timing-function: ease-in;
+                transition-timing-function: ease-in;
+            }
+
+            input[type="submit"]:hover {
+                background: #8b0000;
+                color: white;
+            }
+        }
+    }
+
+    .post-container {
+        width: 100%;
+        display: block;
+        position: relative;
+        padding-left: 20px;
+        vertical-align: top;
+        display: inline-block;
+
+        &__item {
+            width: 95%;
+            padding: .5em 1em;
+            line-height: 1.4em;
+            border: 1px solid #8b0000;
+            margin: 20px;
+            background-color: white;
+            position: relative;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            -ms-border-radius: 8px;
+            -o-border-radius: 8px;
+            border-radius: 8px;
+            text-align: left;
+            display: inline-block;
+
+            h3 {
+                font-size: 18px;
+                color: #95a5a6;
+
+                span {
+                    font-size: 12px;
+                }
+            }
+
+            &-overlay {
+                padding: 10px;
+                line-height: 1.4em;
+                background-color: rgba(236, 240, 241, 0.8);
+                position: relative;
+                -webkit-border-radius: 8px;
+                -moz-border-radius: 8px;
+                -ms-border-radius: 8px;
+                -o-border-radius: 8px;
+                border-radius: 8px;
+                text-align: center;
+                display: inline-block;
+                position: absolute !important;
+                height: 100%;
+                width: 100%;
+                opacity: 0;
+                top: 0;
+                left: 0;
+                z-index: 999;
+                -webkit-transition-property: all;
+                -moz-transition-property: all;
+                -o-transition-property: all;
+                transition-property: all;
+                -webkit-transition-duration: 0.3s;
+                -moz-transition-duration: 0.3s;
+                -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                -webkit-transition-timing-function: ease-in;
+                -moz-transition-timing-function: ease-in;
+                -o-transition-timing-function: ease-in;
+                transition-timing-function: ease-in;
+                font-size: 40px;
+                text-shadow: white 1px 1px 0;
+
+                .overlay-user-actions {
+                    width: 45%;
+                    float: left;
+                    -webkit-transition-property: all;
+                    -moz-transition-property: all;
+                    -o-transition-property: all;
+                    transition-property: all;
+                    -webkit-transition-duration: 0.3s;
+                    -moz-transition-duration: 0.3s;
+                    -o-transition-duration: 0.3s;
+                    transition-duration: 0.3s;
+                    -webkit-transition-timing-function: ease-in;
+                    -moz-transition-timing-function: ease-in;
+                    -o-transition-timing-function: ease-in;
+                    transition-timing-function: ease-in;
+
+                    div {
+                        float: left;
+                        width: 45%;
+                        margin-right: .3em;
+                        -webkit-transition-property: all;
+                        -moz-transition-property: all;
+                        -o-transition-property: all;
+                        transition-property: all;
+                        -webkit-transition-duration: 0.2s;
+                        -moz-transition-duration: 0.2s;
+                        -o-transition-duration: 0.2s;
+                        transition-duration: 0.2s;
+                        -webkit-transition-timing-function: ease-in;
+                        -moz-transition-timing-function: ease-in;
+                        -o-transition-timing-function: ease-in;
+                        transition-timing-function: ease-in;
+                    }
+                }
+
+                .overlay-status-reply {
+                    width: 100%;
+                    float: left;
+                    height: 100%;
+                    display: none;
+                    -webkit-transition-property: all;
+                    -moz-transition-property: all;
+                    -o-transition-property: all;
+                    transition-property: all;
+                    -webkit-transition-duration: 0.3s;
+                    -moz-transition-duration: 0.3s;
+                    -o-transition-duration: 0.3s;
+                    transition-duration: 0.3s;
+                    -webkit-transition-timing-function: ease-in;
+                    -moz-transition-timing-function: ease-in;
+                    -o-transition-timing-function: ease-in;
+                    transition-timing-function: ease-in;
+
+                    form {
+                        margin: -15px;
+                        position: relative;
+
+                        input[type="text"] {
+                            width: 70%;
+                            display: inline-block;
+                            font-size: 12px;
+                            border-radius: 8px;
+                            border: 1px solid black;
+                            background: #eee;
+                        }
+
+                        input[type="submit"] {
+                            width: 25%;
+                            display: inline-block;
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+                div {
+                    .fas {
+                        display: inline;
+                        width: auto;
+                        height: auto;
+                        line-height: normal;
+                        vertical-align: baseline;
+                        background-image: none;
+                        background-position: 0% 0%;
+                        background-repeat: repeat;
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+
+        &__item:hover {
+            &-overlay {
+                opacity: 1;
+            }
+        }
+    }
+}
